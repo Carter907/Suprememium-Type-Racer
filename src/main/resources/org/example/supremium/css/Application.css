@@ -1,0 +1,68 @@
+
+
+.root {
+
+    -fx-background-color: radial-gradient(center 50% 50%, radius 75%, #5a5ab4, #242125);
+}
+#title {
+    -fx-text-fill: radial-gradient(center 50% 50%, radius 75%, #dcdcdc, #919191);
+    -fx-font-size: 45px;
+
+}
+.button {
+    /*-fx-background-color: radial-gradient(center 50% 50%, radius 75%, white, gray);*/
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-start-margin: 10px;
+    -fx-padding: 5px;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-style: solid;
+
+    -fx-border-width: 1px;
+
+
+}
+.button:hover {
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: rgb(201, 201, 201);
+
+}
+.button:pressed {
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: rgb(131, 131, 131);
+}
+.label {
+    -fx-font-size: 16;
+    -fx-text-fill: white;
+}
+.transparent-text-area {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 75%, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.14));
+    -fx-text-fill: white;
+    -fx-font-size: 32px;
+
+
+}
+.text-area {
+    text-area-color: transparent;
+
+}
+.text-area .scroll-pane {
+    -fx-background-color: text-area-color;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: text-area-color;
+}
+
+
+.text-area .scroll-pane .content{
+    -fx-background-color: text-area-color;
+}
+
+.text-area .scroll-bar {
+    -fx-background-color: text-area-color;
+}
+.text-area .scroll-bar:vertical {
+    -fx-opacity: 0;
+}

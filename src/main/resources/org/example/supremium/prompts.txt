@@ -1,0 +1,7 @@
+#prompt_1 Hello world this is my first prompt.
+
+#prompt_2 The Declaration of Independence was approved by the Second Continental Congress on July 4, 1776,
+ proclaiming the separation of the thirteen British colonies in North America from the British government.
+
+#prompt_3 SpriteBatch is given a texture and coordinates for each rectangle to be drawn. It collects the geometry
+ without submitting it to the GPU.
