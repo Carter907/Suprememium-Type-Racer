@@ -5,21 +5,25 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.util.Duration;
 import org.example.supremium.model.Player;
 import org.example.supremium.model.Race;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class HomeController extends Controller {
-    @FXML
-    private TextArea typingArea;
+
     @FXML
     private ButtonBar buttons;
 
     @FXML
-    private TextArea promptText;
+    private TextFlow typingPrompt;
 
     @FXML
     private Button beginRaceButton;
@@ -38,9 +42,7 @@ public class HomeController extends Controller {
     public void initialize(URL url, ResourceBundle bundle) {
         beginRaceButton.setOnAction(this::beginRaceButtonPressed);
         endRaceButton.setOnAction(this::endRaceButtonPressed);
-        typingArea.setWrapText(true);
-        typingArea.setPromptText("");
-        promptText.setWrapText(true);
+
 
 
 
@@ -65,29 +67,22 @@ public class HomeController extends Controller {
         Race.INSTANCE.end(isPromptCompleted);
         timer.textProperty().unbind();
         timer.setText("Timer:");
-        typingArea.clear();
-        typingArea.setEditable(false);
+        typingPrompt.getChildren().clear();
 
-        promptText.clear();
     }
 
     public void startRace() {
         endRace(false);
-        typingArea.requestFocus();
         timer.textProperty().bind(Race.INSTANCE.timeTextProperty());
-        promptText.setPromptText(Race.INSTANCE.getPrompt());
+        typingPrompt.getChildren().addAll(
+                Arrays.stream(Race.INSTANCE.getPrompt().split(""))
+                        .map(Text::new)
+                        .toList()
+
+        );
         Race.INSTANCE.begin(this);
-
-        typingArea.setEditable(true);
     }
 
-    public TextArea getTypingTextArea() {
-        return typingArea;
-    }
-
-    public TextArea getPromptTextArea() {
-        return promptText;
-    }
     public void setBestTime(IntegerProperty bestTime) {
         String bestTimeText = Race.INSTANCE.convertToTime(bestTime);
         player.setBestTime(bestTimeText);

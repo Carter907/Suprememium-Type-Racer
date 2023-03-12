@@ -77,7 +77,7 @@ public enum Race {
                 timeText.set(LABEL_TEXT + convertToTime(time));
 
                 if (homeController.getTypingTextArea().getText()
-                        .equals(homeController.getPromptTextArea().getPromptText())) {
+                        .equals(homeController.getPromptText())) {
 
                     homeController.endRace(true);
                 }

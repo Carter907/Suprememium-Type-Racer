@@ -36,6 +36,12 @@
     -fx-font-size: 16;
     -fx-text-fill: white;
 }
+#promptText {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 75%, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.14));
+    -fx-text-fill: white;
+    -fx-font-size: 32px;
+}
+
 .transparent-text-area {
     -fx-background-color: radial-gradient(center 50% 50%, radius 75%, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.14));
     -fx-text-fill: white;
