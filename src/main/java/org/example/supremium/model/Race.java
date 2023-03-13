@@ -6,9 +6,13 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import org.example.supremium.controller.HomeController;
 
 import java.time.LocalTime;
+import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -47,6 +51,7 @@ public enum Race {
         timer.scheduleAtFixedRate(getRaceTask(), 0, 10, TimeUnit.MILLISECONDS);
         isRunning = true;
     }
+
     public synchronized void end(boolean isPromptCompleted) {
         if (!isRunning) {
             return;
@@ -67,24 +72,43 @@ public enum Race {
 
         isRunning = false;
     }
-    public String convertToTime(IntegerProperty time) {
-        return (time.get()/1000)/60+":"+ (time.get()/1000)%60+ ":" +time.get() % 1000;
+
+    public boolean typeHandler(String typed) {
+        TextFlow flow = homeController.getTextFlow();
+        Optional<Text> characterHolder = flow.getChildren()
+                .stream()
+                .map(n -> (Text) n)
+                .filter(t -> t.getFill() != Color.LIME)
+                .findFirst();
+        if (characterHolder.isEmpty())
+            return false;
+        Text nextCharacter = characterHolder.orElseThrow();
+        if (typed.equals(nextCharacter.getText()))
+            nextCharacter.setFill(Color.LIME);
+        return true;
     }
+
+    public String convertToTime(IntegerProperty time) {
+        return (time.get() / 1000) / 60 + ":" + (time.get() / 1000) % 60 + ":" + time.get() % 1000;
+    }
+
     private Runnable getRaceTask() {
         return () -> {
             Platform.runLater(() -> {
                 time.set(time.get() + 10);
                 timeText.set(LABEL_TEXT + convertToTime(time));
+                String inputText = homeController.getInputText().getText();
+                if (!inputText.isEmpty()) {
+                    System.out.println(inputText.substring(inputText.length() - 1));
+                    if (!typeHandler(inputText.substring(inputText.length() - 1)))
+                        end(true);
 
-                if (homeController.getTypingTextArea().getText()
-                        .equals(homeController.getPromptText())) {
-
-                    homeController.endRace(true);
                 }
             });
 
         };
     }
+
     public ObservableValue<String> timeTextProperty() {
         return this.timeText;
     }
@@ -102,12 +126,12 @@ public enum Race {
 
         //(time.get()/1000)/60+":"+ (time.get()/1000)%60+ ":" +time.get() % 1000;
         int firstColon = text.indexOf(":"),
-                secondColon =  text.indexOf(":", firstColon+1),
+                secondColon = text.indexOf(":", firstColon + 1),
                 thirdColon = text.indexOf(":", secondColon);
 
         int minutes = Integer.parseInt(text.substring(0, firstColon));
-        int seconds = Integer.parseInt(text.substring(firstColon+1, secondColon));
-        int milliseconds = Integer.parseInt(text.substring(secondColon+1));
+        int seconds = Integer.parseInt(text.substring(firstColon + 1, secondColon));
+        int milliseconds = Integer.parseInt(text.substring(secondColon + 1));
 
         return minutes * 60000 + seconds * 1000 + milliseconds;
     }

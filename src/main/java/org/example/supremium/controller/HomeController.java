@@ -4,7 +4,9 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.util.Duration;
@@ -19,6 +21,9 @@ import java.util.stream.Collectors;
 
 public class HomeController extends Controller {
 
+
+    @FXML
+    private TextField inputText;
     @FXML
     private ButtonBar buttons;
 
@@ -68,6 +73,7 @@ public class HomeController extends Controller {
         timer.textProperty().unbind();
         timer.setText("Timer:");
         typingPrompt.getChildren().clear();
+        inputText.clear();
 
     }
 
@@ -76,10 +82,15 @@ public class HomeController extends Controller {
         timer.textProperty().bind(Race.INSTANCE.timeTextProperty());
         typingPrompt.getChildren().addAll(
                 Arrays.stream(Race.INSTANCE.getPrompt().split(""))
-                        .map(Text::new)
+                        .map(s -> {
+                            Text text = new Text(s);
+                            text.setFill(Color.WHITE);
+                            return text;
+                        })
                         .toList()
 
         );
+        inputText.requestFocus();
         Race.INSTANCE.begin(this);
     }
 
@@ -95,5 +106,19 @@ public class HomeController extends Controller {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public TextFlow getTextFlow() {
+        return typingPrompt;
+    }
+    public TextField getTextInput() {
+        return inputText;
+    }
+    public Node getNode() {
+        return timer.getParent();
+    }
+
+    public TextField getInputText() {
+        return inputText;
     }
 }
