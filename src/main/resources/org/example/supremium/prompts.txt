@@ -1,7 +1,14 @@
-#prompt_1 Hello world this is my first prompt.
+#prompt_1 I know more about the private lives of celebrities than I do about any governmental policy that
+ will actually affect me. I'm interested in things that are none of my business, and I'm bored by things
+  that are important to know.
 
 #prompt_2 The Declaration of Independence was approved by the Second Continental Congress on July 4, 1776,
  proclaiming the separation of the thirteen British colonies in North America from the British government.
 
 #prompt_3 SpriteBatch is given a texture and coordinates for each rectangle to be drawn. It collects the geometry
  without submitting it to the GPU.
+
+#prompt_4 The time has come, to say fair's fair. To pay our rent, now, to pay our share. The time has come,
+ a fact's a fact. It belongs to them, we're gonna give it back. How do we dance when our earth is turning?
+ How do we sleep when our beds are burning?
+

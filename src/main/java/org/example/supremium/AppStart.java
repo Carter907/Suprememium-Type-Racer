@@ -25,6 +25,10 @@ public class AppStart extends Application {
         stage.setTitle(APP_NAME);
         stage.setScene(scene);
         stage.show();
+
+        stage.setOnCloseRequest(e -> {
+            System.exit(0);
+        });
     }
 
     public static void main(String[] args) {
