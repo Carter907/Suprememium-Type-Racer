@@ -24,7 +24,7 @@
                         <Button fx:id="endRaceButton" minWidth="25.0" mnemonicParsing="false" prefHeight="26.0" text="End Race" />
                     </buttons>
                   </ButtonBar>
-                  <Label fx:id="timer" text="Timer" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="timer" minWidth="-Infinity" prefHeight="26.0" prefWidth="130.0" text="Timer" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -32,7 +32,7 @@
                         <Insets left="50.0" right="30.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="bestTime" text="Best Time:">
+                  <Label fx:id="wpm" text="WPM">
                      <padding>
                         <Insets left="30.0" />
                      </padding>

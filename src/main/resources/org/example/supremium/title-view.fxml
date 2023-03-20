@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox fx:id="background" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.supremium.controller.TitleController">
    <children>
       <Label fx:id="title" contentDisplay="CENTER" text="Welcome to Suprememium" textFill="WHITE" translateY="-30.0">
@@ -14,10 +13,11 @@
             <Font name="Dubai Regular" size="42.0" />
          </font>
       </Label>
-      <Button fx:id="contin_button" mnemonicParsing="false" text="Continue" onAction="#onContinuePressed">
+      <Button fx:id="contin_button" mnemonicParsing="false" onAction="#onContinuePressed" text="Continue">
          <VBox.margin>
             <Insets />
          </VBox.margin>
       </Button>
+      <Button fx:id="loginButton" mnemonicParsing="false" text="Login" />
    </children>
 </VBox>

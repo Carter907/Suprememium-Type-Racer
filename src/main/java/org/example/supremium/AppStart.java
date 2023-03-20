@@ -4,8 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.example.supremium.data.Database;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class AppStart extends Application {
 
@@ -13,7 +15,9 @@ public class AppStart extends Application {
     final int WIDTH = 600, HEIGHT = 400;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, SQLException {
+
+        Database.INSTANCE.getConnection();
 
         FXMLLoader fxmlLoader = new FXMLLoader(AppStart.class.getResource("title-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), WIDTH, HEIGHT);
